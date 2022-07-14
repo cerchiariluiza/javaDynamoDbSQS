@@ -43,6 +43,11 @@ public class MovieSearchService {
 	    }
 
 
+		public void addNewMovie(Movie movie) {
+			MovieRepository.save(movie);
+			
+		}
+
 	    
 	    
 	    

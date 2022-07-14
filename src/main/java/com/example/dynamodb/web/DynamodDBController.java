@@ -63,6 +63,19 @@ public class DynamodDBController {
 		return new ResponseEntity<Movie>(movie, headers,HttpStatus.OK);
 	}
 
+		@RequestMapping(value = "/insertMovie", method = RequestMethod.POST)
+	public ResponseEntity<List<Movie>> insertMovie(@RequestBody Movie movie) {
+		MultiValueMap<String, String> headers = new HttpHeaders();
+
+		movieSearchService.addNewMovie(movie);
+		Iterable<Movie> movies = movieSearchService.findAllMovies();
+
+		List<Movie> moviesList = StreamSupport.stream(movies.spliterator(), false).collect(Collectors.toList());
+
+		return new ResponseEntity<List<Movie>>(moviesList, headers, HttpStatus.OK);
+
+	}
+
 	
 	
 
