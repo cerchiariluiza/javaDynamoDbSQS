@@ -1,6 +1,6 @@
 aws:
-  access-key: 
-  secret-key: 
+  access-key: ""
+  secret-key: ""
   dynamodb:
     #endpoint: "http://localhost:8000"
    
@@ -10,6 +10,7 @@ cloud:
       auto: false
     region:
       static: us-east-1
+
 
 spring:
   data:
