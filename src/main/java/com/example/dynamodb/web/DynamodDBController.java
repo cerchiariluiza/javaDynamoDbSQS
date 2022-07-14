@@ -36,21 +36,19 @@ public class DynamodDBController {
 
 	
 	
-	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
+	@RequestMapping(value = "/retrieveAllMovies", method = RequestMethod.GET)
   	public ResponseEntity<List<Movie>>  retrieveAllMovies() { 
 		MultiValueMap<String, String> headers = new HttpHeaders();
 		
 		 Iterable<Movie> movies = movieSearchService.findAllMovies();
 		 
 		
-		 if(movies == null) { 
+		 if(movies != null) { 
 			 System.out.println("Movies are not Null");
 		 }
 		
 		 List<Movie> moviesList = StreamSupport.stream(movies.spliterator(),false).collect(Collectors.toList());
-		
-
-		 
+;
 		 
 		 return new ResponseEntity<List<Movie>>(moviesList, headers,HttpStatus.OK);
 	}
@@ -58,7 +56,12 @@ public class DynamodDBController {
 	
 	
 	
-
+	@RequestMapping(value = "/retrieveMovieById/{filmId}", method = RequestMethod.GET)
+  	public ResponseEntity<Movie>  retrieveMovie(@PathVariable(value="filmId", required = true) String filmId) { 
+		MultiValueMap<String, String> headers = new HttpHeaders();
+		Movie movie = movieSearchService.findByMovieId(filmId);
+		return new ResponseEntity<Movie>(movie, headers,HttpStatus.OK);
+	}
 
 	
 	

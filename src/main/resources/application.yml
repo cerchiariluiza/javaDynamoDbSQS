@@ -17,4 +17,3 @@ spring:
     dynamodb:
       entity2ddl:
         auto: validate
-

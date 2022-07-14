@@ -37,6 +37,11 @@ public class MovieSearchService {
 	    public List<Movie> findAllMovies() {
 	        return StreamSupport.stream(MovieRepository.findAll().spliterator(), true).collect(Collectors.toList());
 	    }
+	    
+	    public Movie findByMovieId(String movieId) {
+	        return MovieRepository.findById(movieId).orElse(null);
+	    }
+
 
 	    
 	    
